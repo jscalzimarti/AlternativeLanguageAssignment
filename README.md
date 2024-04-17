@@ -19,19 +19,19 @@ I considered using libraries such as Apache Commons CSV or OpenCSV for parsing t
 
 ## Code Questions
 Company with the highest average weight of the phone body: 
-HP - Highest average weight: 453.6
+- HP - Highest average weight: 453.6
 
 Phones announced in one year and released in another:
-OEM: Xiaomi, Model: Redmi K30 5G
-OEM: Xiaomi, Model: Mi Mix Alpha
-OEM: Motorola, Model: One Hyper
-OEM: Motorola, Model: Razr 2019
+- OEM: Xiaomi, Model: Redmi K30 5G
+- OEM: Xiaomi, Model: Mi Mix Alpha
+- OEM: Motorola, Model: One Hyper
+- OEM: Motorola, Model: Razr 2019
 
 Number of phones with only one feature sensor: 
-432
+- 432
 
 Year with most phones launched after 1999: 
-2019 - Number of phones launched: 304
+- 2019 - Number of phones launched: 304
 
 ![image](https://github.com/jscalzimarti/AlternativeLanguageAssignment/assets/125903169/90945957-cfb9-4643-9d42-9cb39947260a)
 
