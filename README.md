@@ -1,7 +1,7 @@
 # Alternative Language Assignment
 
 ## Language Choice
-I chose to use Java as I was already familar with the language. I have a pretty extensive knowledge of Java, Python, C and C++. I used Java 1.8.0_391. I used the Eclipse IDE as I had had past experience with it and my enviroment was already set up. I also have used JUnit in the past and had it configured on the IDE as well. Java is a Object Oriented Programming language and I have had experience using the Extends and Include keywords. I have also used HashMaps in Java before and those were recommended to be used in this project. File IO was also something I was experienced with and knew would be easy in Java.
+I chose to use Java as I was already familar with the language. I have a pretty extensive knowledge of Java, Python, C and C++. I used Java 1.8.0_391. I used the Eclipse IDE as I had already had past experience with it and my enviroment was already set up. I also have used JUnit in the past and had it configured on the IDE as well. Java is a Object Oriented Programming language and I have had experience using the Extends and Include keywords. I have also used HashMaps in Java before and those were recommended to be used in this project. File IO was also something I was experienced with and knew would be easy in Java.
 
 Java handles OOP programming extremely well as it is strictly object-oriented, designed from the ground up with the philosophy that everything should be an object.
 Java handles file ingestion and IO extremely well and easily with the FileReader class.
