@@ -53,6 +53,21 @@ public class Cell {
     	return display_size;
     }
     
+    public String getLaunchStatus() {
+    	return launch_status;
+    }
+    
+    public Float getBodyWeight() {
+    	return body_weight;
+    }
+    
+    public String getModel() {
+    	return model;
+    }
+    
+    public String getFeaturesSensors() {
+    	return features_sensors;
+    }
     
 
     @Override
@@ -261,6 +276,109 @@ public class Cell {
         }
         return totalCount == 0 ? Double.NaN : totalSize / totalCount;
     }
+    
+    // Method to find the company with the highest average weight of the phone body
+    public static String[] companyWithHighestAvgWeight(DataManager dataManager) {
+        Map<String, Float> avgWeights = new HashMap<>();
+        Map<String, Integer> numPhonesPerOEM = numPhonesPerOEM(dataManager);
+
+        // Calculate average weight for each company
+        for (Cell cell : dataManager.getCells()) {
+            String oem = cell.getOem();
+            float weight = cell.getBodyWeight();
+            if (!Float.isNaN(weight)) {
+                float totalWeight = avgWeights.getOrDefault(oem, 0f) + weight;
+                avgWeights.put(oem, totalWeight);
+            }
+        }
+
+        // Calculate average weight and find the company with the highest average
+        String highestAvgCompany = null;
+        float highestAvgWeight = Float.MIN_VALUE;
+        for (Map.Entry<String, Float> entry : avgWeights.entrySet()) {
+            String oem = entry.getKey();
+            float totalWeight = entry.getValue();
+            int numPhones = numPhonesPerOEM.getOrDefault(oem, 0);
+            float avgWeight = totalWeight / numPhones;
+            if (avgWeight > highestAvgWeight) {
+                highestAvgWeight = avgWeight;
+                highestAvgCompany = oem;
+            }
+        }
+
+        return new String[]{highestAvgCompany, String.valueOf(highestAvgWeight)};
+    }
+
+    // Method to find phones announced in one year and released in another
+    public static Map<String, List<String>> phonesAnnouncedAndReleasedDifferentYear(DataManager dataManager) {
+        Map<String, List<String>> phonesAnnouncedAndReleased = new HashMap<>();
+        for (Cell cell : dataManager.getCells()) {
+            String launchAnnounced = cell.getLaunchAnnounced();
+            String launchStatus = cell.getLaunchStatus();
+            if (launchAnnounced != null && launchStatus != null && !launchAnnounced.equals("-") && !launchStatus.equals("-")) {
+                 String[] announcedParts = launchAnnounced.trim().split(",\\s*");
+                String[] statusParts = launchStatus.trim().split(",\\s*");
+                if (announcedParts.length > 0 && statusParts.length > 0) {
+                    String announcedYearStr = announcedParts[announcedParts.length - 1];
+                    String releasedYearStr = statusParts[statusParts.length - 1];
+                    if (isValidYear(announcedYearStr) && isValidYear(releasedYearStr)) {
+                        int announcedYear = Integer.parseInt(announcedYearStr);
+                        int releasedYear = Integer.parseInt(releasedYearStr);
+                        if (announcedYear != releasedYear) {
+                            String oem = cell.getOem();
+                            String model = cell.getModel();
+                            List<String> models = phonesAnnouncedAndReleased.getOrDefault(oem, new ArrayList<>());
+                            models.add(model);
+                            phonesAnnouncedAndReleased.put(oem, models);
+                        }
+                    }
+                }
+            }
+        }
+        return phonesAnnouncedAndReleased;
+    }
+
+    private static boolean isValidYear(String yearStr) {
+        try {
+            Integer.parseInt(yearStr);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
+    // Method to count phones with only one feature sensor
+    public static int countPhonesWithOneFeatureSensor(DataManager dataManager) {
+        int count = 0;
+        for (Cell cell : dataManager.getCells()) {
+            String featuresSensors = cell.getFeaturesSensors();
+            if (featuresSensors != null && featuresSensors.split(",").length == 1) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Method to find the year with the most phones launched after 1999
+    public static Map.Entry<String, Integer> yearWithMostPhonesLaunchedAfter1999(DataManager dataManager) {
+        Map<String, Integer> phonesByLaunchYear = numPhonesByLaunchYear(dataManager);
+        int maxCount = 0;
+        String yearWithMostPhones = null;
+
+        for (Map.Entry<String, Integer> entry : phonesByLaunchYear.entrySet()) {
+            String year = entry.getKey();
+            if (year != null && !year.equals("-") && Integer.parseInt(year) > 1999) {
+                int count = entry.getValue();
+                if (count > maxCount) {
+                    maxCount = count;
+                    yearWithMostPhones = year;
+                }
+            }
+        }
+        return new AbstractMap.SimpleEntry<>(yearWithMostPhones, maxCount);
+    }
+
 
     
 }

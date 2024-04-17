@@ -65,8 +65,26 @@ public class Main {
 	                System.out.println("The mode Display Size of phones included in the database is: " + modeDisplaySize + " (occurs " + modeCount + " times)");
 	                System.out.println("The median Display Size of phones included in the database is: " + Cell.medianDisplaySize(dataManager));
 	                System.out.println("The average Display Size of phones included in the database is: " + Cell.averageDisplaySize(dataManager));
-	                
 	                System.out.println();
+	                
+	                String[] result = Cell.companyWithHighestAvgWeight(dataManager);
+	                System.out.println("Company with the highest average weight of the phone body: " + result[0] + " - Highest average weight: " + result[1]);
+	                Map<String, List<String>> phonesAnnouncedAndReleased = Cell.phonesAnnouncedAndReleasedDifferentYear(dataManager);
+	                System.out.println("Phones announced in one year and released in another:");
+	                    for (Map.Entry<String, List<String>> entry : phonesAnnouncedAndReleased.entrySet()) {
+	                        String oem = entry.getKey();
+	                        List<String> models = entry.getValue();
+	                        for (String model : models) {
+	                            System.out.println("OEM: " + oem + ", Model: " + model);
+	                        }
+	                    }
+	                int countPhonesWithOneSensor = Cell.countPhonesWithOneFeatureSensor(dataManager);
+	                System.out.println("Number of phones with only one feature sensor: " + countPhonesWithOneSensor);
+	                Map.Entry<String, Integer> yearWithMostPhones = Cell.yearWithMostPhonesLaunchedAfter1999(dataManager);
+	                System.out.println("Year with most phones launched after 1999: " + yearWithMostPhones.getKey() + " - Number of phones launched: " + yearWithMostPhones.getValue());
+
+	                
+	                System.out.println(); 
 	                break;
                 case 2:
                 	// Adding a new cell with extended attributes
