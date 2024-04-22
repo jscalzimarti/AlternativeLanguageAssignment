@@ -1,5 +1,3 @@
-package alternateLanguageAssignment;
-
 import java.util.*;
 
 public class DataManager {

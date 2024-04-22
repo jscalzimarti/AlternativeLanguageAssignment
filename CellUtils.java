@@ -1,5 +1,3 @@
-package alternateLanguageAssignment;
-
 import java.util.regex.*;
 
 public class CellUtils {
