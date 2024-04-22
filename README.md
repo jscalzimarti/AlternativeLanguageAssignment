@@ -1,4 +1,10 @@
 # Alternative Language Assignment
+### Formatting for Repl.it
+When creating a Repl.it project. I placed all of the files within the alternativeLanguageAssignment folder under src/main/java/ in Repl.it and overwrote the current main.java file that was auto generated. This includes the cells.csv file which I placed src/main/java/ as well. If the Repl.it code cannot read the input data, you will need to either edit the src/main/java/ path or move the cells.csv file into the same folder as main.java
+![image](https://github.com/jscalzimarti/AlternativeLanguageAssignment/assets/125903169/cc0c5b3f-a71a-40fd-a7f6-24c9a2b3e3d4)
+
+Please ensure the Repl.it file handling is set up properly
+
 
 ## Language Choice
 I chose to use Java as I was already familar with the language. I have a pretty extensive knowledge of Java, Python, C and C++. I used Java 1.8.0_391. I used the Eclipse IDE as I had already had past experience with it and my enviroment was already set up. I also have used JUnit in the past and had it configured on the IDE as well. Java is a Object Oriented Programming language and I have had experience using the Extends and Include keywords. I have also used HashMaps in Java before and those were recommended to be used in this project. File IO was also something I was experienced with and knew would be easy in Java.
